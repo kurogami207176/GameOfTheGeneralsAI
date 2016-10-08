@@ -23,8 +23,16 @@ public class GOGPiece {
 		return type.name();
 	}
 
-	public Type getType() {
+	public Type getTypeSpecial() {
 		return type;
+	}
+
+	public Type getType(String playerId) {
+		if (this.playerid.equalsIgnoreCase(playerId)) {
+			return type;
+		} else {
+			return Type.INVI;
+		}
 	}
 
 	public String getPlayerId() {

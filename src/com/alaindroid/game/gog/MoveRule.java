@@ -20,11 +20,13 @@ public abstract class MoveRule {
 	public List<Vector> getPossibleMoves(int x, int y, int xMin, int yMin, int xMax, int yMax) {
 		List<Vector> moveList = new ArrayList<Vector>();
 		List<Vector> vectorList = getMoveVectors(x, y);
+		System.out.println("getPossibleMoves");
 		for (Vector vector : vectorList) {
 			int xPoss = x + vector.getX();
 			int yPoss = y + vector.getY();
-			if (xPoss >= xMin && xPoss <= xMin && yPoss >= yMin && yPoss <= yMin) {
+			if (xPoss >= xMin && xPoss <= xMax && yPoss >= yMin && yPoss <= yMax) {
 				moveList.add(new Vector(xPoss, yPoss));
+				System.out.println(xPoss + "," + yPoss);
 			}
 		}
 		return moveList;

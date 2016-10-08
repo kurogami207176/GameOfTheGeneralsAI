@@ -13,10 +13,8 @@ public class MainDirectionMoveRule extends MoveRule {
 	public static MainDirectionMoveRule getInstance() {
 		return instance;
 	}
-
 	private static final List<Vector> MOVES = Arrays.asList(Directions.N.getVector(), Directions.E.getVector(),
-			Directions.W.getVector(), Directions.S.getVector(), Directions.NW.getVector(), Directions.NE.getVector(),
-			Directions.SW.getVector(), Directions.SE.getVector());
+			Directions.W.getVector(), Directions.S.getVector());
 
 	@Override
 	public List<Vector> getMoveVectors(int x, int y) {

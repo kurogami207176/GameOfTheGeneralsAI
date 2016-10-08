@@ -31,6 +31,8 @@ public class GOGBoard {
 		allPieces = new ArrayList<GOGPieceWithCoordinate>();
 		min = new Vector(0, 0);
 		max = new Vector(x, y);
+		this.attackRule = attackRule;
+		this.moveRule = moveRule;
 	}
 
 	public void addPlayer(GOGPlayer player) {
@@ -78,18 +80,18 @@ public class GOGBoard {
 		GOGPieceWithCoordinate toMove = null;
 		GOGPieceWithCoordinate target = null;
 		for (GOGPieceWithCoordinate boardPiece : allPieces) {
-			if (boardPiece.vector.equals(move.from)) {
-				if (boardPiece.playerId.equalsIgnoreCase(playerId)) {
-					toMove = boardPiece;
-				} else {
-					return MoveResult.NOT_OWNED;
-				}
-			}
 			if (boardPiece.vector.equals(move.to)) {
 				if (boardPiece.playerId.equalsIgnoreCase(playerId)) {
 					return MoveResult.BLOCKED;
 				} else {
 					target = boardPiece;
+				}
+			}
+			if (boardPiece.vector.equals(move.from)) {
+				if (boardPiece.playerId.equalsIgnoreCase(playerId)) {
+					toMove = boardPiece;
+				} else {
+					return MoveResult.NOT_OWNED;
 				}
 			}
 
@@ -192,11 +194,7 @@ public class GOGBoard {
 		if (piece == null) {
 			return null;
 		}
-		if (piece.getPlayerId().equalsIgnoreCase(playerId)) {
-			return piece.getType();
-		} else {
-			return Type.INVI;
-		}
+		return piece.getType(playerId);
 	}
 
 	public static void main(String[] test) {
@@ -221,8 +219,13 @@ public class GOGBoard {
 		System.out.println(board.addPiece(new GOGPiece(player2Id, Type.SGT), new Vector(7, 8)));
 		board.setCurrentPlayerId(player1Id);
 		System.out.println(board);
-		board.setCurrentPlayerId(player2Id);
+		System.out.println(board.move(player1Id, new Move(new Vector(0, 0), new Vector(1, 0))));
 		System.out.println(board);
+		System.out.println(board.move(player1Id, new Move(new Vector(0, 0), new Vector(1, 0))));
+		System.out.println(board);
+		System.out.println(board.move(player1Id, new Move(new Vector(1, 0), new Vector(2, 1))));
+		System.out.println(board);
+
 	}
 
 	public String getCurrentPlayerId() {

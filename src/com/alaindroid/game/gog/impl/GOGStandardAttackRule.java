@@ -15,33 +15,33 @@ public class GOGStandardAttackRule implements AttackRule {
 
 	@Override
 	public GOGPiece getWinner(GOGPiece attacker, GOGPiece defender) {
-		if (attacker.getType() == defender.getType()) {
+		if (attacker.getTypeSpecial() == defender.getTypeSpecial()) {
 			// both are eliminated if same unit
-			if (attacker.getType() != Type.FLAG) {
+			if (attacker.getTypeSpecial() != Type.FLAG) {
 				return null;
 			} else { // flag will win if flag is defender
 				return attacker;
 			}
 		}
 		// flag always loses
-		if (defender.getType() == Type.FLAG) {
+		if (defender.getTypeSpecial() == Type.FLAG) {
 			return attacker;
 		}
-		if (attacker.getType() == SPY) {
-			if (defender.getType().getOrder() >= Type.SGT.getOrder()) {
+		if (attacker.getTypeSpecial() == SPY) {
+			if (defender.getTypeSpecial().getOrder() >= Type.SGT.getOrder()) {
 				return attacker;
 			} else {
 				return defender;
 			}
 		}
-		if (defender.getType() == SPY) {
-			if (attacker.getType().getOrder() >= Type.SGT.getOrder()) {
+		if (defender.getTypeSpecial() == SPY) {
+			if (attacker.getTypeSpecial().getOrder() >= Type.SGT.getOrder()) {
 				return defender;
 			} else {
 				return attacker;
 			}
 		}
-		if (attacker.getType().getOrder() > defender.getType().getOrder()) {
+		if (attacker.getTypeSpecial().getOrder() > defender.getTypeSpecial().getOrder()) {
 			return attacker;
 		} else {
 			return defender;

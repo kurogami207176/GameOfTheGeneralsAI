@@ -3,6 +3,10 @@ package com.alaindroid.game.gog;
 import com.alaindroid.game.gog.model.Vector;
 
 public class Move {
+	public Move(Vector from, Vector to) {
+		this.from = from;
+		this.to = to;
+	}
 	public Move(int xFrom, int yFrom, int xTo, int yTo) {
 		this.from = new Vector(xFrom, yFrom);
 		this.to = new Vector(xTo, yTo);
